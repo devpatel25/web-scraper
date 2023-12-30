@@ -1,3 +1,4 @@
+# Imports
 import requests
 from bs4 import BeautifulSoup
 import csv
@@ -7,6 +8,7 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
 }
 
+# open CSV file
 with open("restaurants.csv",'w',newline='') as file:
     writer = csv.writer(file)
     writer.writerow(["Name","Rating"])
@@ -17,7 +19,7 @@ try:
 except requests.exceptions.HTTPError as errh:
     print ("Http Error:",errh)
 
-
+# parse html
 soup =BeautifulSoup(responce.text,"html.parser")
 
 restaurants=soup.find_all('li',class_="css-1qn0b6x")
